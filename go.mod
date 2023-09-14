@@ -1,4 +1,4 @@
-module 9t90
+module github.com/Unaxiom/go-9t90
 
 go 1.20
 
