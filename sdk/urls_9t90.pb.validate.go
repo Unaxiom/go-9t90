@@ -35,9 +35,6 @@ var (
 	_ = sort.Sort
 )
 
-// define the regex for a UUID once up-front
-var _urls_9_t_90_uuidPattern = regexp.MustCompile("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
-
 // Validate checks the field values on URLsServiceCreateRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
@@ -64,37 +61,9 @@ func (m *URLsServiceCreateRequest) validate(all bool) error {
 
 	// no validation rules for Description
 
-	if uri, err := url.Parse(m.GetRedirectsTo()); err != nil {
-		err = URLsServiceCreateRequestValidationError{
-			field:  "RedirectsTo",
-			reason: "value must be a valid URI",
-			cause:  err,
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	} else if !uri.IsAbs() {
-		err := URLsServiceCreateRequestValidationError{
-			field:  "RedirectsTo",
-			reason: "value must be absolute",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for RedirectsTo
 
-	if m.GetExpiresAt() < 0 {
-		err := URLsServiceCreateRequestValidationError{
-			field:  "ExpiresAt",
-			reason: "value must be greater than or equal to 0",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for ExpiresAt
 
 	if len(errors) > 0 {
 		return URLsServiceCreateRequestMultiError(errors)
@@ -198,64 +167,18 @@ func (m *URLsServiceUpdateRequest) validate(all bool) error {
 
 	var errors []error
 
-	if err := m._validateUuid(m.GetUuid()); err != nil {
-		err = URLsServiceUpdateRequestValidationError{
-			field:  "Uuid",
-			reason: "value must be a valid UUID",
-			cause:  err,
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for Uuid
 
 	// no validation rules for Name
 
 	// no validation rules for Description
 
-	if uri, err := url.Parse(m.GetRedirectsTo()); err != nil {
-		err = URLsServiceUpdateRequestValidationError{
-			field:  "RedirectsTo",
-			reason: "value must be a valid URI",
-			cause:  err,
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	} else if !uri.IsAbs() {
-		err := URLsServiceUpdateRequestValidationError{
-			field:  "RedirectsTo",
-			reason: "value must be absolute",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for RedirectsTo
 
-	if m.GetExpiresAt() < 0 {
-		err := URLsServiceUpdateRequestValidationError{
-			field:  "ExpiresAt",
-			reason: "value must be greater than or equal to 0",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for ExpiresAt
 
 	if len(errors) > 0 {
 		return URLsServiceUpdateRequestMultiError(errors)
-	}
-
-	return nil
-}
-
-func (m *URLsServiceUpdateRequest) _validateUuid(uuid string) error {
-	if matched := _urls_9_t_90_uuidPattern.MatchString(uuid); !matched {
-		return errors.New("invalid uuid format")
 	}
 
 	return nil
@@ -392,37 +315,9 @@ func (m *URL) validate(all bool) error {
 
 	// no validation rules for Code
 
-	if uri, err := url.Parse(m.GetRedirectsTo()); err != nil {
-		err = URLValidationError{
-			field:  "RedirectsTo",
-			reason: "value must be a valid URI",
-			cause:  err,
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	} else if !uri.IsAbs() {
-		err := URLValidationError{
-			field:  "RedirectsTo",
-			reason: "value must be absolute",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for RedirectsTo
 
-	if m.GetExpiresAt() < 0 {
-		err := URLValidationError{
-			field:  "ExpiresAt",
-			reason: "value must be greater than or equal to 0",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for ExpiresAt
 
 	if len(errors) > 0 {
 		return URLMultiError(errors)
@@ -658,27 +553,9 @@ func (m *URLsServicePaginationReq) validate(all bool) error {
 
 	// no validation rules for IsActive
 
-	if m.GetCount() <= 0 {
-		err := URLsServicePaginationReqValidationError{
-			field:  "Count",
-			reason: "value must be greater than 0",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for Count
 
-	if m.GetOffset() < 0 {
-		err := URLsServicePaginationReqValidationError{
-			field:  "Offset",
-			reason: "value must be greater than or equal to 0",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for Offset
 
 	// no validation rules for SortOrder
 
@@ -928,27 +805,9 @@ func (m *URLsServiceFilterReq) validate(all bool) error {
 
 	// no validation rules for IsActive
 
-	if m.GetCount() < -1 {
-		err := URLsServiceFilterReqValidationError{
-			field:  "Count",
-			reason: "value must be greater than or equal to -1",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for Count
 
-	if m.GetOffset() < 0 {
-		err := URLsServiceFilterReqValidationError{
-			field:  "Offset",
-			reason: "value must be greater than or equal to 0",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for Offset
 
 	// no validation rules for SortOrder
 
@@ -1068,27 +927,9 @@ func (m *URLsServiceSearchAllReq) validate(all bool) error {
 
 	// no validation rules for IsActive
 
-	if m.GetCount() < -1 {
-		err := URLsServiceSearchAllReqValidationError{
-			field:  "Count",
-			reason: "value must be greater than or equal to -1",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for Count
 
-	if m.GetOffset() < 0 {
-		err := URLsServiceSearchAllReqValidationError{
-			field:  "Offset",
-			reason: "value must be greater than or equal to 0",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for Offset
 
 	// no validation rules for SortOrder
 
